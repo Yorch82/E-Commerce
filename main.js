@@ -5,5 +5,7 @@ app.use(express.json());
 // const db = require('./config/config')
 
 app.use('/users', require('./routes/users'));
+app.use('/books', require('./routes/books'));
+
  
 app.listen(port, () => console.log(`Servidor levantado en puerto ${port}`));
