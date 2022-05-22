@@ -11,6 +11,10 @@ module.exports = {
       number: {
         type: Sequelize.STRING
       },
+      //Añadido
+      products:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

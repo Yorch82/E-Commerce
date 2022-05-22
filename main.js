@@ -6,6 +6,7 @@ app.use(express.json());
 
 app.use('/users', require('./routes/users'));
 app.use('/books', require('./routes/books'));
+app.use('/orders', require('./routes/orders'))
 
  
 app.listen(port, () => console.log(`Servidor levantado en puerto ${port}`));
