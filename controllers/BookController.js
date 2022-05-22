@@ -1,4 +1,5 @@
-const { Book } = require("../models/index");
+const { Book, Sequelize } = require("../models/index");
+const { Op } = Sequelize;
 
 const BookController = {
     addBook(req, res) {
@@ -35,6 +36,40 @@ const BookController = {
         console.log(err);
         res.status(500).send({
           message: "Ha habido un problema al cargar el libro",
+        });
+      });
+  },
+  getByName(req, res) {
+    Book.findAll({
+      where: {
+        title: {
+          [Op.like]: `%${req.params.title}%`,
+        },
+      },
+      include: [],
+    })
+      .then((post) => res.send(post))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({
+          message: "Ha habido un problema al cargar el libro",
+        });
+      });
+  },
+  getByPrice(req, res) {
+    Book.findAll({
+      where: {
+        price: {
+          [Op.like]: `%${req.params.price}%`,
+        },
+      },
+      include: [],
+    })
+      .then((post) => res.send(post))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({
+          message: "Ha habido un problema al cargar la publicación",
         });
       });
   },
