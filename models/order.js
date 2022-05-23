@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Order.belongsTo(models.User)
-      Order.belongsToMany(models.Book, {through: 'BooksOrders'})
+      Order.belongsToMany(models.Book, {through: 'BooksOrders'});
     }
   }
   Order.init({
