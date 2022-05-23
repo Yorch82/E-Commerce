@@ -9,4 +9,4 @@ const OrderController = {
 
 }
 
-module.exports = OrderController
+module.exports = OrderController;

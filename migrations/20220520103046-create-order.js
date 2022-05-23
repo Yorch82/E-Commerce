@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       //Añadido
-      products:{
-        type: Sequelize.STRING
-      },
+      // products:{
+      //   type: Sequelize.STRING
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

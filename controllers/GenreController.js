@@ -25,4 +25,4 @@ const GenreController = {
     }
 }
 
-module.exports = GenreController
+module.exports = GenreController;
