@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Orders', {
@@ -11,10 +12,9 @@ module.exports = {
       number: {
         type: Sequelize.STRING
       },
-      //Añadido
-      // products:{
-      //   type: Sequelize.STRING
-      // },
+      UserId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
