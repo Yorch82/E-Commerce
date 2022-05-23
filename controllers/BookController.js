@@ -88,4 +88,4 @@ const BookController = {
 },
 }
 
-module.exports = BookController
+module.exports = BookController;
