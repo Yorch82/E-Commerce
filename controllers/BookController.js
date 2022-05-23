@@ -73,7 +73,19 @@ const BookController = {
         });
       });
   },
-
+  getAllOrdered(req, res) {
+    Book.findAll({
+    //   include: [Book.price],
+      order: [['price', 'DESC']]
+    })
+      .then((books) => res.send(books))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({
+          message: "Ha habido un problema al cargar los libros",
+        });
+      });
+},
 }
 
 module.exports = BookController
