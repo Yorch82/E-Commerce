@@ -10,7 +10,10 @@ const UserController = {
         const password = bcrypt.hashSync(req.body.password,10);
         User.create({...req.body, password:password })
             .then(user => res.status(201).send({ message: 'Usuario creado con éxito', user }))
-            .catch(console.error)
+            .catch(console.error);
+            res.status(500).send({
+                message: "Ya existe un usuario con este correo",
+              });
     },
 
     login(req, res){

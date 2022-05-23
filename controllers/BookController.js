@@ -73,6 +73,7 @@ const BookController = {
         });
       });
   },
+  
   getAllOrdered(req, res) {
     Book.findAll({
     //   include: [Book.price],
@@ -88,4 +89,4 @@ const BookController = {
 },
 }
 
-module.exports = BookController;
+module.exports = BookController
