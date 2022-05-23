@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Order.belongsTo(models.User)
+<<<<<<< HEAD
+=======
+      Order.belongsToMany(models.Book, {through: 'BooksOrders'});
+>>>>>>> develop
     }
   }
   Order.init({
