@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Order);
-      User.hasMany(models.Book);
     }
   }
   User.init({
