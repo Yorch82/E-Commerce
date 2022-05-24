@@ -1,12 +1,25 @@
-const { Order } = require("../models/index");
+const { Order, Book, User } = require("../models/index");
 
 const OrderController = {
     create(req, res) {
         Order.create({...req.body })
-            .then(order => res.status(201).send({ message: 'Pedido añadido con éxito', order }))
+            .then(order => {
+                order.addBook(req.body.BookId) //Añadido linea 7 y llaves
+                res.status(201).send({ message: 'Pedido añadido con éxito', order })})
             .catch(console.error)
     },
-
+    getAll(req, res) {
+        Order.findAll({
+            include: [{model: Book, through: { attributes: [] } }, User],
+        })
+          .then((orders) => res.send(orders))
+          .catch((err) => {
+            console.log(err);
+            res.status(500).send({
+              message: "Ha habido un problema",
+            });
+          });
+    }
 }
 
 module.exports = OrderController;
