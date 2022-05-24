@@ -10,10 +10,12 @@ const UserController = {
         const password = bcrypt.hashSync(req.body.password,10);
         User.create({...req.body, password:password })
             .then(user => res.status(201).send({ message: 'Usuario creado con éxito', user }))
-            .catch(console.error);
-            res.status(500).send({
-                message: "Ya existe un usuario con este correo",
-              });
+            .catch(error => { 
+                console.error(error)
+                res.status(500).send({
+                    message: "Ya existe un usuario con este correo",
+                  })
+                })
     },
 
     login(req, res){
@@ -29,9 +31,9 @@ const UserController = {
             if(!isMatch){
                 return res.status(400).send({message: "Usuario o contraseña incorrecta."})
             }
-            token = jwt.sign({ id: user.id }, jwt_secret);
+            let token = jwt.sign({ id: user.id }, jwt_secret);
             Token.create({ token, UserId: user.id });
-            res.send(user)
+            res.send( {message: 'Bienvenido ' + user.name, user, token} );
         })
     }
 
