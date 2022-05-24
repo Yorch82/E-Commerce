@@ -5,7 +5,7 @@ const BookController = {
     addBook(req, res) {
         Book.create({...req.body })
             .then(book => res.status(201).send({ message: 'Libro añadido exitosamente.', book }))
-            .catch(console.error)
+            .catch(console.error).send("sadadsa")
     },
     getAll(req, res) {
         Book.findAll({
@@ -76,7 +76,7 @@ const BookController = {
   
   getAllOrdered(req, res) {
     Book.findAll({
-    //   include: [Book.price],
+      include: [Book.price],
       order: [['price', 'DESC']]
     })
       .then((books) => res.send(books))
