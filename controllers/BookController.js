@@ -1,15 +1,23 @@
-const { Book, Sequelize } = require("../models/index");
+const { Book, Genre, Sequelize } = require("../models/index");
 const { Op } = Sequelize;
 
 const BookController = {
     addBook(req, res) {
         Book.create({...req.body })
+<<<<<<< HEAD
             .then(book => res.status(201).send({ message: 'Libro añadido exitosamente.', book }))
             .catch(console.error).send("sadadsa")
+=======
+            .then(book => {
+              book.addGenre(req.body.GenreId)
+              res.status(201).send({ message: 'Libro añadido exitosamente.', book })
+            })
+            .catch(console.error);
+>>>>>>> develop
     },
     getAll(req, res) {
         Book.findAll({
-          include: [],
+          include: [{model: Genre, through: { attributes: [] } }],
         })
           .then((books) => res.send(books))
           .catch((err) => {
