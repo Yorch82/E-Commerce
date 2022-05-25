@@ -19,9 +19,13 @@ const typeError = (err, req, res, next) => {
     } else
         if (errOrigin === 'Book') {
             res.status(500).send('Hubo un problema a la hora de crear un Libro');
-        } else {
-            res.status(500).send('Hubo un problema a la hora de crear un Usuario');
+        } else 
+            if (errOrigin === 'Order'){
+            res.status(500).send('Hubo un problema con el pedido.');
         }  
+        else{
+            res.status(500).send('Hubo un problema con la creacion del usuario.');
+        }
     }
 
 module.exports = { typeError }
