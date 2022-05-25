@@ -81,8 +81,7 @@ const BookController = {
   },
   
   getAllOrdered(req, res) {
-    Book.findAll({
-      include: [Book.price],
+    Book.findAll({      
       order: [['price', 'DESC']]
     })
       .then((books) => res.send(books))
