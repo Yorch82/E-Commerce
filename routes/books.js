@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const BookController = require('../controllers/BookController');
-const { authentication, isAdmin } = require('../middleware/authentication');
+const { authentication, isAdmin } = require('../middlewares/authentication');
 
 router.post('/addBooks', authentication, isAdmin, BookController.addBook);
 router.get('/getBooks', BookController.getAll);

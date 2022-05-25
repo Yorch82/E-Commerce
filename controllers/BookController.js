@@ -2,13 +2,16 @@ const { Book, Genre, Sequelize } = require("../models/index");
 const { Op } = Sequelize;
 
 const BookController = {
-    addBook(req, res) {
+    addBook(req, res, next) {
         Book.create({...req.body })
             .then(book => {
               book.addGenre(req.body.GenreId)
               res.status(201).send({ message: 'Libro añadido exitosamente.', book })
             })
-            .catch(console.error);
+            .catch(error => {
+              error.origin = 'Book';
+              next(error);              
+          });
     },
     getAll(req, res) {
         Book.findAll({
@@ -30,28 +33,6 @@ const BookController = {
         });
         res.send("El libro ha sido eliminada con éxito");
       },
-
-      async update(req, res) {
-        try {
-          await Book.update(
-            { ...req.body },
-            {
-              where: {
-                id: req.params.id,
-              },
-            }
-          );
-          const book = await Book.findByPk(req.params.id);
-          book.setGenres(req.body.GenreId); //actualiza el género en la tabla intermedia
-          res.send("Libro actualizado con éxito");
-        } catch (error) {
-          console.error(error);
-          res
-            .status(500)
-            .send({ message: "no ha sido posible actualizado el libro" });
-        }
-      },
-
     getById(req, res) {
     Book.findByPk(req.params.id, {
       include: [],

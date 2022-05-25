@@ -5,17 +5,15 @@ const { jwt_secret } = require('../config/config.json')['development']
 
 
 const UserController = {
-    create(req, res) {
-        // req.body.role = "user";
+    create(req, res, next) {
+        req.body.role = "user";
         const password = bcrypt.hashSync(req.body.password,10);
         User.create({...req.body, password:password })
             .then(user => res.status(201).send({ message: 'Usuario creado con éxito', user }))
-            .catch(error => { 
-                console.error(error)
-                res.status(500).send({
-                    message: "Ya existe un usuario con este correo",
-                  })
-                })
+            .catch(console.error);
+            res.status(500).send({
+                message: "Ya existe un usuario con este correo",
+              });
     },
 
     login(req, res){
@@ -31,27 +29,14 @@ const UserController = {
             if(!isMatch){
                 return res.status(400).send({message: "Usuario o contraseña incorrecta."})
             }
-            let token = jwt.sign({ id: user.id }, jwt_secret);
+            token = jwt.sign({ id: user.id }, jwt_secret);
             Token.create({ token, UserId: user.id });
-            res.send( {message: 'Bienvenido ' + user.name, user, token} );
+            res.send(user)
         })
     },
-    async logout(req, res) {
-        try {
-            await Token.destroy({
-                where: {
-                    [Op.and]: [
-                        { UserId: req.user.id },
-                        { token: req.headers.authorization }
-                    ]
-                }
-            });
-            res.send({ message: 'Desconectado con éxito' })
-                } catch (error) {
-                    console.log(error)
-                    res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
-                }
-        }
+    async logout (req,res){
+        console.log("rerere")        
+    }
 
 }
 
