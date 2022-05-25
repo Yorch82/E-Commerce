@@ -75,13 +75,17 @@ const BookController = {
       .catch((err) => {
         console.log(err);
         res.status(500).send({
-          message: "Ha habido un problema al cargar la publicación",
+          message: "Ha habido un problema al cargar el libro",
         });
       });
   },
   
   getAllOrdered(req, res) {
+<<<<<<< HEAD
     Book.findAll({      
+=======
+    Book.findAll({
+>>>>>>> develop
       order: [['price', 'DESC']]
     })
       .then((books) => res.send(books))
