@@ -10,7 +10,7 @@ const OrderController = {
     },
     getAll(req, res) {
         Order.findAll({
-            include: [{model: Book, through: { attributes: [] } }, User],
+            include: [{model: Book, through: { attributes: [] } }, User]
         })
           .then((orders) => res.send(orders))
           .catch((err) => {

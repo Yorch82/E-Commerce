@@ -1,7 +1,8 @@
-const { User, Token } = require("../models/index");
+const { User, Token, Order, Book, Sequelize,} = require("../models/index");
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
+const { Op } = Sequelize
 
 
 const UserController = {
@@ -49,7 +50,25 @@ const UserController = {
                     console.log(error)
                     res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
                 }
+        },
+
+        loginUserOrder(req, res){
+                User.findOne({
+                    where: {
+                        id: req.user.id
+                    },
+                    include: [{model: Order, include: [{model:Book}]}
+                ]
+                })
+                .then((user) => res.send(user))
+                .catch((err) => {
+                    // error.origin = 'Order';
+                    // next(error)
+                    console.log(err);
+                    res.status(500).send({ message: "Error localizando productos del pedido." })
+                })
         }
+
 
 }
 
