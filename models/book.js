@@ -15,9 +15,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Book.init({
-    title: DataTypes.STRING,
-    price: DataTypes.STRING,
-    // UserId: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce nombre del producto",
+        },
+      },
+    },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce precio del producto",
+        },
+      },
+    }    
   }, {
     sequelize,
     modelName: 'Book',

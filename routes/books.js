@@ -3,7 +3,7 @@ const router = express.Router();
 const BookController = require('../controllers/BookController');
 const { authentication, isAdmin } = require('../middlewares/authentication');
 
-router.post('/addBooks', authentication, isAdmin, BookController.addBook);
+router.post('/addBooks',  BookController.addBook);
 router.get('/getBooks', BookController.getAll);
 router.delete('/deleteBook/id/:id', authentication, BookController.delete);
 router.get("/id/:id", BookController.getById);
