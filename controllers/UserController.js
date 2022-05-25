@@ -10,10 +10,10 @@ const UserController = {
         const password = bcrypt.hashSync(req.body.password,10);
         User.create({...req.body, password:password })
             .then(user => res.status(201).send({ message: 'Usuario creado con éxito', user }))
-            .catch(console.error);
-            res.status(500).send({
-                message: "Ya existe un usuario con este correo",
-              });
+            .catch(error => {
+                error.origin = 'User';
+                next(error);              
+            })            
     },
 
     login(req, res){
@@ -34,9 +34,22 @@ const UserController = {
             res.send(user)
         })
     },
-    async logout (req,res){
-        console.log("rerere")        
-    }
+    async logout(req, res) {
+        try {
+            await Token.destroy({
+                where: {
+                    [Op.and]: [
+                        { UserId: req.user.id },
+                        { token: req.headers.authorization }
+                    ]
+                }
+            });
+            res.send({ message: 'Desconectado con éxito' })
+                } catch (error) {
+                    console.log(error)
+                    res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
+                }
+        }
 
 }
 

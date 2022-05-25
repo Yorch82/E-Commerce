@@ -35,7 +35,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     },
-    phone: DataTypes.STRING,
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce tu teléfono",
+        },        
+      }
+    },
     password: DataTypes.STRING,
     role: DataTypes.STRING
   }, {

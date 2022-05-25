@@ -92,7 +92,27 @@ const BookController = {
           message: "Ha habido un problema al cargar los libros",
         });
       });
-},
+  },
+  async update(req, res) {
+    try {
+      await Book.update(
+        { ...req.body },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+      const book = await Book.findByPk(req.params.id);
+      book.setGenres(req.body.GenreId); //actualiza el género en la tabla intermedia
+      res.send("Libro actualizado con éxito");
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ message: "no ha sido posible actualizado el libro" });
+    }
+  }
 }
 
 module.exports = BookController
