@@ -81,11 +81,7 @@ const BookController = {
   },
   
   getAllOrdered(req, res) {
-<<<<<<< HEAD
-    Book.findAll({      
-=======
     Book.findAll({
->>>>>>> develop
       order: [['price', 'DESC']]
     })
       .then((books) => res.send(books))
