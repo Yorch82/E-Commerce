@@ -16,6 +16,7 @@ const UserController = {
         confirmed: false,
         role: "user",
     });
+    //res.send({messages: 'Usuario creado correctamente', user});
     const emailToken = jwt.sign({email:req.body.email},jwt_secret,{expiresIn:'48h'})
 
     const url = 'http://localhost:3000/users/confirm/'+ emailToken
@@ -27,14 +28,12 @@ const UserController = {
         `,
       });
         res.status(201).send({
-        message: "Te hemos enviado un correo para confirmar el registro",
-        user,
-        });
-        } catch (err) {
-        err.origin = 'User';
-        next(err)
-        }
-        },
+        message: "Te hemos enviado un correo para confirmar el registro", user});
+        } 
+        catch (err) {
+            err.origin = 'User';
+            next(err)
+        }},
 
     login(req, res){
         User.findOne({
@@ -52,7 +51,6 @@ const UserController = {
             if(!user.confirmed){
                 return res.status(400).send({message:"Debes confirmar tu correo"})
             }
-
             token = jwt.sign({ id: user.id }, jwt_secret);
             Token.create({ token, UserId: user.id });
             res.send(user)

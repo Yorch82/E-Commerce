@@ -36,5 +36,25 @@ const isAdmin = async(req, res, next) => {
     }
     next();
 }
+
+const isManager = async(req, res, next) => {
+    const manager = ['manager'];
+    if (!manager.includes(req.user.role)) {
+        return res.status(403).send({
+            message: 'No tienes permisos de Manager'
+        });
+    }
+    next();
+}
+const isUser = async(req, res, next) => {
+    const user = ['user'];
+    if (!user.includes(req.user.role)) {
+        return res.status(403).send({
+            message: 'Error usuario'
+        });
+    }
+    next();
+}
+
     
-    module.exports = { authentication, isAdmin }
+module.exports = { authentication, isAdmin, isManager, isUser }
