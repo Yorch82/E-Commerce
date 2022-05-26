@@ -9,7 +9,6 @@ app.use('/users', require('./routes/users'));
 app.use('/books', require('./routes/books'));
 app.use('/orders', require('./routes/orders'));
 app.use('/genres', require('./routes/genres'));
-app.use('/upload', require('./routes/upload'))
 
 app.use(typeError);
 
