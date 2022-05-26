@@ -55,6 +55,5 @@ const isUser = async(req, res, next) => {
     }
     next();
 }
-
-    
+  
 module.exports = { authentication, isAdmin, isManager, isUser }
