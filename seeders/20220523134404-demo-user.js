@@ -9,17 +9,9 @@ module.exports = {
         name: 'Pedro',
         email: "pedro25@gmail.com",
         phone: "111111111",
-<<<<<<< HEAD
-        password: bcrypt.hashSync("holabuenas", 10),        
-=======
-<<<<<<< HEAD
-        password: bcrypt.hashSync("holabuenas", 10),        
-=======
         password: bcrypt.hashSync("holabuenas", 10),
         role: "admin",
         confirmed: true,
->>>>>>> 16684c7cedfe3f7a3b48800d6e26ccd642b65c47
->>>>>>> develop
         createdAt: new Date(),
         updatedAt: new Date()
       },
