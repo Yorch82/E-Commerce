@@ -2,39 +2,38 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    
-     
-    await queryInterface.bulkInsert('Books', [
+    await queryInterface.bulkInsert('BooksGenres', [
       {
-        title: 'Quijote',
-        price: "100€",
-        // GenreId: [3],
+        GenreId: [1],
+        Bookid: [4],        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        title: 'Alien',
-        price: "15€",
-        // GenreId: [2, 4],
+        GenreId: [2],
+        Bookid: [2],       
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        title: 'La Carretera',
-        price: "17€",
-        // GenreId: [3],
+        GenreId: [3],
+        Bookid: [1],       
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        title: 'Austin Power',
-        price: "25€",
-        // GenreId: [1],
+        GenreId: [3],
+        Bookid: [3],       
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        GenreId: [4],
+        Bookid: [2],      
         createdAt: new Date(),
         updatedAt: new Date()
       },
   ], {});
-    
   },
 
   async down (queryInterface, Sequelize) {

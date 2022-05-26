@@ -6,6 +6,6 @@ let transporter = nodemailer.createTransport({
     auth: {
         user: 'toplibreriavalencia@gmail.com',
         pass: 'Hola1234'
-    }
+    } //recordatorio
 });
 module.exports = transporter;
