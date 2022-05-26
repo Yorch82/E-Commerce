@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const BookController = require('../controllers/BookController');
-const { authentication, isAdmin } = require('../middlewares/authentication');
+const { authentication, isAdmin, isManager, isUser } = require('../middlewares/authentication');
 
-router.post('/addBooks',authentication, isAdmin,  BookController.addBook);
-router.get('/getBooks', BookController.getAll);
-router.delete('/deleteBook/id/:id', authentication, isAdmin, BookController.delete);
-router.get("/id/:id", BookController.getById);
-router.put('/:id', authentication, isAdmin, BookController.update)
-router.get("/search/title/:title", BookController.getByName);
-router.get("/search/price/:price", BookController.getByPrice);
-router.get('/getBooksOrdered', BookController.getAllOrdered);
+router.post('/addBooks',authentication, isManager,  BookController.addBook);
+router.get('/getBooks',authentication, isUser, BookController.getAll);
+router.delete('/deleteBook/id/:id',authentication, isManager, BookController.delete);
+router.get("/id/:id",authentication, isUser, BookController.getById);
+router.put('/:id',authentication, isAdmin, BookController.update)
+router.get("/search/title/:title",authentication, isUser, BookController.getByName);
+router.get("/search/price/:price",authentication, isUser, BookController.getByPrice);
+router.get('/getBooksOrdered',authentication, isUser, BookController.getAllOrdered);
 
 module.exports = router;

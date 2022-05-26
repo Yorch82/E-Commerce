@@ -24,7 +24,7 @@ const typeError = (err, req, res, next) => {
             res.status(500).send('Hubo un problema con el pedido.');
         }  
         else{
-            res.status(500).send('Hubo un problema con la creacion del usuario.');
+            res.status(500).send('Error desconocido.');
         }
     }
 
