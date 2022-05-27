@@ -42,7 +42,6 @@ explicando las relaciones entre las tablas. El proyecto consistirá en una tiend
 Aquí presentamos las tecnologías empleadas en este proyecto:
 
 - [Node.js](https://node.org/)
-- [React.js](https://reactjs.org/)
 - [sequelize](https://sequelize.org/)
 - [Multer](https://github.com/expressjs/multer)
 - [MySql](https://MySql.org/)
