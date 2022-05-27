@@ -14,7 +14,7 @@ const UserController = {
         ...req.body,
         password: hash,
         confirmed: false,
-        role: "user",
+        // role: "user",
     });
     //res.send({messages: 'Usuario creado correctamente', user});
     const emailToken = jwt.sign({email:req.body.email},jwt_secret,{expiresIn:'48h'})
